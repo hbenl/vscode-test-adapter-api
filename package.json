@@ -10,6 +10,7 @@
   },
   "files": [
     "out",
+    "README.md",
     "LICENSE"
   ],
   "main": "out/index.js",
