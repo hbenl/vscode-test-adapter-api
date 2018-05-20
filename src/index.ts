@@ -96,6 +96,9 @@ export interface TestInfo {
 
 	/** The line within the specified file where the test definition starts (if known). */
 	line?: number;
+
+	/** Indicates whether this test will be skipped during test runs */
+	skipped?: boolean;
 }
 
 /**
