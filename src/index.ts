@@ -138,4 +138,15 @@ export interface TestEvent {
 	 * It is usually used for information about why a test has failed.
 	 */
 	message?: string;
+
+	/**
+	 * These messages will be shown as decorations for the given lines in the editor.
+	 * They are usually used to show information about a test failure at the location of that failure.
+	 */
+	decorations?: TestDecoration[];
+}
+
+export interface TestDecoration {
+	line: number;
+	message: string;
 }
