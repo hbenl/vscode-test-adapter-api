@@ -3,8 +3,10 @@ import * as vscode from 'vscode';
 export const testExplorerExtensionId = 'hbenl.vscode-test-explorer';
 
 export interface TestExplorerExtension {
-	registerAdapter(adapter: TestAdapter): void
-	unregisterAdapter(adapter: TestAdapter): void
+	registerAdapter(adapter: TestAdapter): void;
+	unregisterAdapter(adapter: TestAdapter): void;
+	registerController(controller: TestController): void;
+	unregisterController(controller: TestController): void;
 }
 
 export interface TestAdapter {
@@ -56,6 +58,11 @@ export interface TestAdapter {
 	 * been set to "autorun" in the Test Explorer.
 	 */
 	readonly autorun?: vscode.Event<void>;
+}
+
+export interface TestController {
+	registerAdapter(adapter: TestAdapter): void;
+	unregisterAdapter(adapter: TestAdapter): void;
 }
 
 /**
