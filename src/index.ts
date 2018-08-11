@@ -60,9 +60,29 @@ export interface TestAdapter {
 	readonly autorun?: vscode.Event<void>;
 }
 
+export interface TestAdapterDelegate {
+	workspaceFolder?: vscode.WorkspaceFolder;
+	load(): Promise<void>;
+	run(tests: TestSuiteInfo | TestInfo): Promise<void>;
+	debug(tests: TestSuiteInfo | TestInfo): Promise<void>;
+	cancel(): void;
+	readonly tests: vscode.Event<TestLoadStartedEvent | TestLoadFinishedEvent>;
+	readonly testStates: vscode.Event<TestRunStartedEvent | TestRunFinishedEvent | TestSuiteEvent | TestEvent>;
+	readonly autorun?: vscode.Event<void>;
+}
+
 export interface TestController {
-	registerAdapter(adapter: TestAdapter): void;
-	unregisterAdapter(adapter: TestAdapter): void;
+	registerAdapterDelegate(delegate: TestAdapterDelegate): void;
+	unregisterAdapterDelegate(delegate: TestAdapterDelegate): void;
+}
+
+export interface TestLoadStartedEvent {
+	type: 'started';
+}
+
+export interface TestLoadFinishedEvent {
+	type: 'finished';
+	suite: TestSuiteInfo | undefined;
 }
 
 /**
@@ -156,4 +176,13 @@ export interface TestEvent {
 export interface TestDecoration {
 	line: number;
 	message: string;
+}
+
+export interface TestRunStartedEvent {
+	type: 'started';
+	tests: TestSuiteInfo | TestInfo;	
+}
+
+export interface TestRunFinishedEvent {
+	type: 'finished';
 }
