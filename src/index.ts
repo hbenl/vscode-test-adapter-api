@@ -5,6 +5,8 @@ export const testExplorerExtensionId = 'hbenl.vscode-test-explorer';
 export interface TestExplorerExtension {
 	registerAdapter(adapter: TestAdapter): void;
 	unregisterAdapter(adapter: TestAdapter): void;
+	registerAdapterDelegate(delegate: TestAdapterDelegate): void;
+	unregisterAdapterDelegate(delegate: TestAdapterDelegate): void;
 	registerController(controller: TestController): void;
 	unregisterController(controller: TestController): void;
 }
