@@ -20,10 +20,9 @@ To move to the new API, the following changes are necessary:
 ```
 tests: vscode.Event<TestLoadStartedEvent | TestLoadFinishedEvent>;
 ```
-* it should start loading the test definitions immediately after being registered with the Test Explorer extension
-  (instead of waiting for a call to the `load()` method)
 * when it detects any changes to the test files or its configuration that make it necessary to reload the test
-  definitions, it should start doing so immediately; the `reload` event source has been removed
+  definitions, it should start doing so immediately (instead of sending a `reload` event and then waiting for
+  a call to `load()`); the `reload` event source has been removed
 * the loaded test definitions are now sent using the `TestLoadFinishedEvent`, not as the return value of the 
   `load()` method
 * the `run()` and `debug()` methods now receive an array of test or suite IDs

@@ -44,10 +44,8 @@ export interface TestAdapter {
 
 	/**
 	 * Start loading the definitions of tests and test suites.
-	 * Note that this method is only used to give the user a chance to manually request a reload.
-	 * The Test Adapter should load the test definitions immediately after being registered with
-	 * the Test Explorer extension and should automatically reload them if necessary (due to changes
-	 * to the test files or the adapter's configuration).
+	 * Note that the Test Adapter should also watch source files and the configuration for changes and
+	 * automatically reload the test definitions if necessary (without waiting for a call to this method).
 	 * @returns A promise that is resolved when the adapter finished loading the test definitions.
 	 */
 	load(): Promise<void>;
