@@ -26,4 +26,5 @@ tests: vscode.Event<TestLoadStartedEvent | TestLoadFinishedEvent>;
   definitions, it should start doing so immediately; the `reload` event source has been removed
 * the loaded test definitions are now sent using the `TestLoadFinishedEvent`, not as the return value of the 
   `load()` method
+* the `run()` and `debug()` methods now receive an array of test or suite IDs
 * it must send a `TestRunStartedEvent` and a `TestRunFinishedEvent` at the beginning and end of a test run, repectively.
