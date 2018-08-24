@@ -81,7 +81,7 @@ export interface TestAdapter {
 	 * For example, if there is one test suite with ID `suite1` containing one test with ID `test1`,
 	 * a successful test run would emit the following events:
 	 * ```
-	 * { type: 'started' }
+	 * { type: 'started', tests: ['suite1'] }
 	 * { type: 'suite', suite: 'suite1', state: 'running' }
 	 * { type: 'test', test: 'test1', state: 'running' }
 	 * { type: 'test', test: 'test1', state: 'passed' }
@@ -133,10 +133,14 @@ export interface TestLoadFinishedEvent {
  * This event is sent by a Test Adapter when it starts a test run.
  */
 export interface TestRunStartedEvent {
+
 	type: 'started';
 
-	/** The test(s) that will be run */
-	tests: TestSuiteInfo | TestInfo;	
+	/** 
+	 * The test(s) that will be run, this should be the same as the `tests` argument from the call
+	 * to `run(tests)` or `debug(tests)` that started the test run.
+	 */
+	tests: string[];
 }
 
 /**
