@@ -127,6 +127,9 @@ export interface TestLoadFinishedEvent {
 
 	/** The test definitions that have just been loaded */
 	suite: TestSuiteInfo | undefined;
+
+	/** If loading the tests failed, this should contain the reason for the failure */
+	errorMessage?: string;
 }
 
 /**
