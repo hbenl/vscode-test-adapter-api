@@ -93,6 +93,9 @@ export interface TestAdapter {
 	/**
 	 * This event can be used by the adapter to trigger a test run for all tests that have
 	 * been set to "autorun" in the Test Explorer.
+	 * Note that the Test Explorer will automatically trigger such a test run when it receives a
+	 * `TestLoadFinishedEvent`. In other words, you should *not* send this event after reloading
+	 * the tests as this would result in 2 identical test runs being triggered.
 	 */
 	readonly autorun?: vscode.Event<void>;
 }
