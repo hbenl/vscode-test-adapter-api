@@ -238,7 +238,7 @@ export interface TestEvent {
 	 */
 	test: string | TestInfo;
 
-	state: 'running' | 'passed' | 'failed' | 'skipped';
+	state: 'running' | 'passed' | 'failed' | 'skipped' | 'errored';
 
 	/**
 	 * This message will be displayed by the Test Explorer when the user selects the test.
