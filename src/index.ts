@@ -62,7 +62,7 @@ export interface TestAdapter {
 	 * @param tests An array of test or suite IDs. For every suite ID, all tests in that suite are run.
 	 * @returns A promise that is resolved when the test run is completed.
 	 */
-	debug(tests: string[]): Promise<void>;
+	debug?(tests: string[]): Promise<void>;
 
 	/**
 	 * Stop the current test run.
