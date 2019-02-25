@@ -168,6 +168,9 @@ export interface TestSuiteInfo {
 	/** The label to be displayed by the Test Explorer for this suite. */
 	label: string;
 
+	/** The tooltip text to be displayed by the Test Explorer when you hover over this suite. */
+	tooltip?: string;
+
 	/**
 	 * The file containing this suite (if known).
 	 * This can either be an absolute path (if it is a local file) or a URI.
@@ -192,6 +195,9 @@ export interface TestInfo {
 
 	/** The label to be displayed by the Test Explorer for this test. */
 	label: string;
+
+	/** The tooltip text to be displayed by the Test Explorer when you hover over this test. */
+	tooltip?: string;
 
 	/**
 	 * The file containing this test (if known).
