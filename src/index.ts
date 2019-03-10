@@ -260,6 +260,20 @@ export interface TestEvent {
 }
 
 export interface TestDecoration {
+
+	/**
+	 * The line for which the decoration should be shown
+	 */
 	line: number;
+
+	/**
+	 * The message to show in the decoration. This must be a single line of text.
+	 */
 	message: string;
+
+	/**
+	 * This text is shown when the user hovers over the decoration's message.
+	 * If this isn't defined then the hover will show the test's log.
+	 */
+	hover?: string;
 }
