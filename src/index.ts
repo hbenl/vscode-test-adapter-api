@@ -168,6 +168,9 @@ export interface TestSuiteInfo {
 	/** The label to be displayed by the Test Explorer for this suite. */
 	label: string;
 
+	/** The description to be displayed next to the label. */
+	description?: string;
+
 	/** The tooltip text to be displayed by the Test Explorer when you hover over this suite. */
 	tooltip?: string;
 
@@ -195,6 +198,9 @@ export interface TestInfo {
 
 	/** The label to be displayed by the Test Explorer for this test. */
 	label: string;
+
+	/** The description to be displayed next to the label. */
+	description?: string;
 
 	/** The tooltip text to be displayed by the Test Explorer when you hover over this test. */
 	tooltip?: string;
@@ -228,6 +234,18 @@ export interface TestSuiteEvent {
 	suite: string | TestSuiteInfo;
 
 	state: 'running' | 'completed';
+
+	/**
+	 * This property allows you to update the description of the suite in the Test Explorer.
+	 * When the test states are reset, the description will change back to the one from `TestSuiteInfo`.
+	 */
+	description?: string;
+
+	/**
+	 * This property allows you to update the tooltip of the suite in the Test Explorer.
+	 * When the test states are reset, the tooltip will change back to the one from `TestSuiteInfo`.
+	 */
+	tooltip?: string;
 }
 
 /**
@@ -257,6 +275,18 @@ export interface TestEvent {
 	 * They are usually used to show information about a test failure at the location of that failure.
 	 */
 	decorations?: TestDecoration[];
+
+	/**
+	 * This property allows you to update the description of the test in the Test Explorer.
+	 * When the test states are reset, the description will change back to the one from `TestInfo`.
+	 */
+	description?: string;
+
+	/**
+	 * This property allows you to update the tooltip of the test in the Test Explorer.
+	 * When the test states are reset, the tooltip will change back to the one from `TestInfo`.
+	 */
+	tooltip?: string;
 }
 
 export interface TestDecoration {
