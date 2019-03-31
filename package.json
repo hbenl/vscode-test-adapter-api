@@ -2,7 +2,7 @@
   "name": "vscode-test-adapter-api",
   "description": "API for test adapters for the VS Code test explorer",
   "author": "Holger Benl <hbenl@evandor.de>",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "license": "MIT",
   "repository": {
     "type": "git",
