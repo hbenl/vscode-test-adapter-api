@@ -91,11 +91,21 @@ export interface TestAdapter {
 	readonly testStates: vscode.Event<TestRunStartedEvent | TestRunFinishedEvent | TestSuiteEvent | TestEvent>;
 
 	/**
-	 * This event can be used by the adapter to trigger a test run for all tests that have
-	 * been set to "autorun" in the Test Explorer.
-	 * Note that the Test Explorer will automatically trigger such a test run when it receives a
-	 * `TestLoadFinishedEvent`. In other words, you should *not* send this event after reloading
-	 * the tests as this would result in 2 identical test runs being triggered.
+	 * This event can be used by the adapter to inform the Test Explorer about tests whose states
+	 * are outdated.
+	 * This is usually sent directly after a `TestLoadFinishedEvent` to specify which tests may
+	 * have changed. Furthermore, it should be sent when the source files for the application
+	 * under test have changed.
+	 * This will also trigger a test run for those tests that have been set to "autorun" by the
+	 * user and which are retired by this event.
+	 * If the adapter does not implement this event then the Test Explorer will automatically
+	 * retire (and possibly autorun) all tests after each `TestLoadFinishedEvent`.
+	 */
+	readonly retire?: vscode.Event<RetireEvent>;
+
+	/**
+	 * @deprecated This event is deprecated, use the `retire` event instead.
+	 * For backwards compatibility, `autorun.fire()` calls have the same effect as `retire.fire({})`.
 	 */
 	readonly autorun?: vscode.Event<void>;
 }
@@ -306,4 +316,13 @@ export interface TestDecoration {
 	 * If this isn't defined then the hover will show the test's log.
 	 */
 	hover?: string;
+}
+
+export interface RetireEvent {
+
+	/** 
+	 * An array of test or suite IDs. For every suite ID, all tests in that suite will be retired.
+	 * If this isn't defined then all tests will be retired.
+	 */
+	tests?: string[];
 }
