@@ -256,6 +256,18 @@ export interface TestSuiteEvent {
 	 * When the test states are reset, the tooltip will change back to the one from `TestSuiteInfo`.
 	 */
 	tooltip?: string;
+
+	/**
+	 * This property allows you to update the file of the suite in the Test Explorer.
+	 * When the test states are reset, the file property will change back to the one from `TestSuiteInfo`.
+	 */
+	file?: string;
+
+	/**
+	 * This property allows you to update the line of the suite in the Test Explorer.
+	 * When the test states are reset, the line property will change back to the one from `TestSuiteInfo`.
+	 */
+	line?: number;
 }
 
 /**
@@ -297,6 +309,18 @@ export interface TestEvent {
 	 * When the test states are reset, the tooltip will change back to the one from `TestInfo`.
 	 */
 	tooltip?: string;
+
+	/**
+	 * This property allows you to update the file of the test in the Test Explorer.
+	 * When the test states are reset, the file property will change back to the one from `TestInfo`.
+	 */
+	file?: string;
+
+	/**
+	 * This property allows you to update the line of the test in the Test Explorer.
+	 * When the test states are reset, the line property will change back to the one from `TestInfo`.
+	 */
+	line?: number;
 }
 
 export interface TestDecoration {
@@ -305,6 +329,13 @@ export interface TestDecoration {
 	 * The line for which the decoration should be shown
 	 */
 	line: number;
+
+	/**
+	 * The file in which the decoration should be shown. If this is not set, the decoration will
+	 * be shown in the file containing the test referenced by the TestEvent containing this decoration
+	 * (so in most cases there is no need to set this property).
+	 */
+	file?: string;
 
 	/**
 	 * The message to show in the decoration. This must be a single line of text.
