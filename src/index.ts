@@ -207,6 +207,9 @@ export interface TestSuiteInfo {
 	/** The line within the specified file where the suite definition starts (if known). */
 	line?: number;
 
+	/** Set this to `false` if Test Explorer shouldn't offer debugging this suite. */
+	debuggable?: boolean;
+
 	children: (TestSuiteInfo | TestInfo)[];
 }
 
@@ -240,6 +243,9 @@ export interface TestInfo {
 
 	/** Indicates whether this test will be skipped during test runs */
 	skipped?: boolean;
+
+	/** Set this to `false` if Test Explorer shouldn't offer debugging this test. */
+	debuggable?: boolean;
 }
 
 /**
