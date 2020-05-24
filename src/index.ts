@@ -157,13 +157,26 @@ export interface TestRunStartedEvent {
 	 * to `run(tests)` or `debug(tests)` that started the test run.
 	 */
 	tests: string[];
+
+	/**
+	 * A Test Adapter should generate a unique ID for every test run and add that ID to all events
+	 * for that test run. This is necessary so that Test Controllers can link the events if multiple
+	 * test runs are running in parallel.
+	 */
+	testRunId?: string;
 }
 
 /**
  * This event is sent by a Test Adapter when it finished a test run.
  */
 export interface TestRunFinishedEvent {
+
 	type: 'finished';
+
+	/**
+	 * The ID of the test run that was finished.
+	 */
+	testRunId?: string;
 }
 
 /**
@@ -268,6 +281,11 @@ export interface TestSuiteEvent {
 	 * When the test states are reset, the line property will change back to the one from `TestSuiteInfo`.
 	 */
 	line?: number;
+
+	/**
+	 * The ID of the test run that this event is part of.
+	 */
+	testRunId?: string;
 }
 
 /**
@@ -321,6 +339,11 @@ export interface TestEvent {
 	 * When the test states are reset, the line property will change back to the one from `TestInfo`.
 	 */
 	line?: number;
+
+	/**
+	 * The ID of the test run that this event is part of.
+	 */
+	testRunId?: string;
 }
 
 export interface TestDecoration {
