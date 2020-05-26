@@ -211,6 +211,15 @@ export interface TestSuiteInfo {
 	debuggable?: boolean;
 
 	children: (TestSuiteInfo | TestInfo)[];
+
+	/** Set this to `true` if there was an error while loading the suite */
+	errored?: boolean;
+
+	/**
+	 * This message will be displayed by the Test Explorer when the user selects the suite.
+	 * It is usually used for information about why the suite was set to errored.
+	 */
+	message?: string;
 }
 
 /**
@@ -246,6 +255,15 @@ export interface TestInfo {
 
 	/** Set this to `false` if Test Explorer shouldn't offer debugging this test. */
 	debuggable?: boolean;
+
+	/** Set this to `true` if there was an error while loading the test */
+	errored?: boolean;
+
+	/**
+	 * This message will be displayed by the Test Explorer when the user selects the test.
+	 * It is usually used for information about why the test was set to errored.
+	 */
+	message?: string;
 }
 
 /**
@@ -262,7 +280,13 @@ export interface TestSuiteEvent {
 	 */
 	suite: string | TestSuiteInfo;
 
-	state: 'running' | 'completed';
+	state: 'running' | 'completed' | 'errored';
+
+	/**
+	 * This message will be displayed by the Test Explorer when the user selects the suite.
+	 * It is usually used for information about why the suite was set to errored.
+	 */
+	message?: string;
 
 	/**
 	 * This property allows you to update the description of the suite in the Test Explorer.
